@@ -1,0 +1,108 @@
+[
+  {
+    "order_id": "IISC202600145",
+    "date": "2026-07-02",
+    "amount": 2098,
+    "status": "Out for Delivery",
+    "eta": "2026-07-12",
+    "items": [
+      {"product_id": "P002", "name": "IISc Alumni Hoodie", "qty": 1, "price": 1499},
+      {"product_id": "P003", "name": "Crest Ceramic Mug", "qty": 1, "price": 349},
+      {"product_id": "P012", "name": "Campus Sticker Pack", "qty": 1, "price": 199}
+    ],
+    "timeline": [
+      {"step": "Order Placed", "date": "2026-07-02", "done": true},
+      {"step": "Packed", "date": "2026-07-04", "done": true},
+      {"step": "Shipped", "date": "2026-07-06", "done": true},
+      {"step": "Out for Delivery", "date": "2026-07-11", "done": true},
+      {"step": "Delivered", "date": "2026-07-12 (expected)", "done": false}
+    ]
+  },
+  {
+    "order_id": "IISC202600132",
+    "date": "2026-06-18",
+    "amount": 1899,
+    "status": "Delivered",
+    "eta": "2026-06-24",
+    "items": [
+      {"product_id": "P007", "name": "Campus Backpack", "qty": 1, "price": 1899}
+    ],
+    "timeline": [
+      {"step": "Order Placed", "date": "2026-06-18", "done": true},
+      {"step": "Packed", "date": "2026-06-19", "done": true},
+      {"step": "Shipped", "date": "2026-06-20", "done": true},
+      {"step": "Out for Delivery", "date": "2026-06-24", "done": true},
+      {"step": "Delivered", "date": "2026-06-24", "done": true}
+    ]
+  },
+  {
+    "order_id": "IISC202600118",
+    "date": "2026-05-30",
+    "amount": 1198,
+    "status": "Delivered",
+    "eta": "2026-06-05",
+    "items": [
+      {"product_id": "P001", "name": "IISc Classic T-Shirt", "qty": 2, "price": 599}
+    ],
+    "timeline": [
+      {"step": "Order Placed", "date": "2026-05-30", "done": true},
+      {"step": "Packed", "date": "2026-05-31", "done": true},
+      {"step": "Shipped", "date": "2026-06-01", "done": true},
+      {"step": "Out for Delivery", "date": "2026-06-05", "done": true},
+      {"step": "Delivered", "date": "2026-06-05", "done": true}
+    ]
+  },
+  {
+    "order_id": "IISC202600097",
+    "date": "2026-04-21",
+    "amount": 999,
+    "status": "Delivered",
+    "eta": "2026-04-27",
+    "items": [
+      {"product_id": "P009", "name": "Executive Pen Set", "qty": 1, "price": 999}
+    ],
+    "timeline": [
+      {"step": "Order Placed", "date": "2026-04-21", "done": true},
+      {"step": "Packed", "date": "2026-04-22", "done": true},
+      {"step": "Shipped", "date": "2026-04-23", "done": true},
+      {"step": "Out for Delivery", "date": "2026-04-27", "done": true},
+      {"step": "Delivered", "date": "2026-04-27", "done": true}
+    ]
+  },
+  {
+    "order_id": "IISC202600074",
+    "date": "2026-03-10",
+    "amount": 1548,
+    "status": "Returned",
+    "eta": "2026-03-16",
+    "items": [
+      {"product_id": "P011", "name": "Insulated Coffee Flask", "qty": 1, "price": 1199},
+      {"product_id": "P003", "name": "Crest Ceramic Mug", "qty": 1, "price": 349}
+    ],
+    "timeline": [
+      {"step": "Order Placed", "date": "2026-03-10", "done": true},
+      {"step": "Delivered", "date": "2026-03-16", "done": true},
+      {"step": "Return Requested", "date": "2026-03-18", "done": true},
+      {"step": "Refund Processed", "date": "2026-03-24", "done": true}
+    ]
+  },
+  {
+    "order_id": "IISC202600051",
+    "date": "2026-02-02",
+    "amount": 897,
+    "status": "Delivered",
+    "eta": "2026-02-08",
+    "items": [
+      {"product_id": "P008", "name": "Heritage Cap", "qty": 1, "price": 449},
+      {"product_id": "P010", "name": "Alumni Lapel Badge", "qty": 1, "price": 299},
+      {"product_id": "P006", "name": "Tata Hall Notebook", "qty": 1, "price": 249}
+    ],
+    "timeline": [
+      {"step": "Order Placed", "date": "2026-02-02", "done": true},
+      {"step": "Packed", "date": "2026-02-03", "done": true},
+      {"step": "Shipped", "date": "2026-02-04", "done": true},
+      {"step": "Out for Delivery", "date": "2026-02-08", "done": true},
+      {"step": "Delivered", "date": "2026-02-08", "done": true}
+    ]
+  }
+]

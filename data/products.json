@@ -1,0 +1,259 @@
+[
+  {
+    "id": "P001",
+    "name": "IISc Classic T-Shirt",
+    "category": "Apparel",
+    "price": 599,
+    "rating": 4.6,
+    "reviews_count": 132,
+    "stock": 42,
+    "image": "assets/products/tshirt.png",
+    "short_description": "100% combed cotton tee with the Institute crest in gold print.",
+    "description": "A wardrobe staple for every IIScian. Bio-washed 180 GSM combed cotton with a screen-printed Institute crest that survives a hundred washes. Pre-shrunk, tagless, and cut in a relaxed unisex fit.",
+    "specs": {
+      "Material": "100% combed cotton, 180 GSM",
+      "Fit": "Unisex, regular",
+      "Sizes": "S / M / L / XL / XXL",
+      "Care": "Machine wash cold, do not bleach",
+      "Print": "Screen print, gold crest"
+    },
+    "reviews": [
+      {"user": "Ananya R. (M.Tech '19)", "rating": 5, "comment": "Fabric quality is genuinely good. Crest looks sharp even after months."},
+      {"user": "Karthik S. (PhD '15)", "rating": 4, "comment": "Runs slightly large, order one size down."}
+    ]
+  },
+  {
+    "id": "P002",
+    "name": "IISc Alumni Hoodie",
+    "category": "Apparel",
+    "price": 1499,
+    "rating": 4.8,
+    "reviews_count": 98,
+    "stock": 18,
+    "image": "assets/products/hoodie.png",
+    "short_description": "Heavyweight fleece hoodie in Institute maroon with kangaroo pocket.",
+    "description": "Built for Bangalore evenings and conference halls alike. 320 GSM cotton-poly fleece, brushed inside, with an embroidered ALUMNI wordmark across the chest, metal-tipped drawstrings and a double-layered hood.",
+    "specs": {
+      "Material": "80% cotton / 20% polyester fleece, 320 GSM",
+      "Fit": "Unisex, regular",
+      "Sizes": "S / M / L / XL / XXL",
+      "Care": "Machine wash cold, tumble dry low",
+      "Detail": "Embroidered wordmark, kangaroo pocket"
+    },
+    "reviews": [
+      {"user": "Meera V. (B.Sc '21)", "rating": 5, "comment": "Warm, heavy, and the embroidery is beautiful. Worth every rupee."},
+      {"user": "Arjun P. (M.E '12)", "rating": 5, "comment": "Best campus merch I own. Gets compliments at work."}
+    ]
+  },
+  {
+    "id": "P003",
+    "name": "Crest Ceramic Mug",
+    "category": "Drinkware",
+    "price": 349,
+    "rating": 4.5,
+    "reviews_count": 210,
+    "stock": 120,
+    "image": "assets/products/mug.png",
+    "short_description": "330 ml ceramic mug with gold crest — dishwasher and microwave safe.",
+    "description": "The lab-bench companion. A 330 ml glazed ceramic mug in cream with the Institute crest fired in gold-tone ink. Comfortable C-handle, chip-resistant rim, and safe for both microwave and dishwasher.",
+    "specs": {
+      "Capacity": "330 ml",
+      "Material": "Glazed ceramic",
+      "Safe for": "Microwave, dishwasher",
+      "Finish": "Cream body, gold-tone crest"
+    },
+    "reviews": [
+      {"user": "Divya N. (PhD '18)", "rating": 5, "comment": "My third one — I keep gifting them away."},
+      {"user": "Rohit K. (M.Tech '20)", "rating": 4, "comment": "Good size for filter coffee. Print has held up."}
+    ]
+  },
+  {
+    "id": "P004",
+    "name": "Steel Water Bottle",
+    "category": "Drinkware",
+    "price": 799,
+    "rating": 4.4,
+    "reviews_count": 87,
+    "stock": 64,
+    "image": "assets/products/bottle.png",
+    "short_description": "750 ml single-wall stainless bottle, laser-etched crest, leak-proof cap.",
+    "description": "A 750 ml food-grade stainless steel bottle with a laser-etched crest that never peels. Leak-proof screw cap with a carry loop, wide mouth for ice cubes, and a matte maroon powder coat.",
+    "specs": {
+      "Capacity": "750 ml",
+      "Material": "304 stainless steel",
+      "Cap": "Leak-proof screw cap with loop",
+      "Finish": "Matte maroon powder coat, laser etch"
+    },
+    "reviews": [
+      {"user": "Sanjay B. (B.E '10)", "rating": 4, "comment": "Sturdy and genuinely leak-proof. Not insulated though — check the flask if you want that."}
+    ]
+  },
+  {
+    "id": "P005",
+    "name": "Padded Laptop Sleeve",
+    "category": "Accessories",
+    "price": 899,
+    "rating": 4.3,
+    "reviews_count": 45,
+    "stock": 33,
+    "image": "assets/products/sleeve.png",
+    "short_description": "Water-resistant 15.6\" sleeve with plush lining and crest zip pull.",
+    "description": "Protects up to a 15.6-inch laptop with 6 mm foam padding and a scratch-free plush lining. Water-resistant canvas outer in maroon, YKK zip with a crest-stamped pull, and a flat front pocket for chargers.",
+    "specs": {
+      "Fits": "Laptops up to 15.6\"",
+      "Padding": "6 mm foam, plush lining",
+      "Outer": "Water-resistant canvas",
+      "Pockets": "1 front zip pocket"
+    },
+    "reviews": [
+      {"user": "Neha T. (M.Sc '22)", "rating": 4, "comment": "Snug fit for my 14-inch ThinkPad with room for the charger."}
+    ]
+  },
+  {
+    "id": "P006",
+    "name": "Tata Hall Notebook",
+    "category": "Stationery",
+    "price": 249,
+    "rating": 4.7,
+    "reviews_count": 156,
+    "stock": 200,
+    "image": "assets/products/notebook.png",
+    "short_description": "A5 hardbound notebook, 192 ruled pages, lay-flat binding.",
+    "description": "An A5 hardbound notebook with a debossed line sketch of Tata Hall on the cover. 192 pages of 100 GSM ivory paper that takes fountain pen ink without bleed, thread-sewn lay-flat binding, and a gold ribbon marker.",
+    "specs": {
+      "Size": "A5 (148 × 210 mm)",
+      "Pages": "192, ruled, 100 GSM ivory",
+      "Binding": "Thread-sewn, lay-flat",
+      "Extras": "Ribbon marker, elastic closure"
+    },
+    "reviews": [
+      {"user": "Prof. Iyer (Faculty)", "rating": 5, "comment": "Paper quality rivals notebooks three times the price."}
+    ]
+  },
+  {
+    "id": "P007",
+    "name": "Campus Backpack",
+    "category": "Accessories",
+    "price": 1899,
+    "rating": 4.6,
+    "reviews_count": 72,
+    "stock": 21,
+    "image": "assets/products/backpack.png",
+    "short_description": "25 L water-resistant backpack with padded laptop bay and crest badge.",
+    "description": "A 25-litre everyday backpack in maroon ripstop with a padded 15.6-inch laptop bay, bottle pockets on both sides, an organiser panel, and a woven crest badge. Breathable back panel and reinforced base.",
+    "specs": {
+      "Capacity": "25 L",
+      "Laptop bay": "Padded, up to 15.6\"",
+      "Material": "Water-resistant ripstop",
+      "Warranty": "1 year against manufacturing defects"
+    },
+    "reviews": [
+      {"user": "Vivek M. (M.Tech '17)", "rating": 5, "comment": "Daily commuter for 8 months, zero complaints."}
+    ]
+  },
+  {
+    "id": "P008",
+    "name": "Heritage Cap",
+    "category": "Apparel",
+    "price": 449,
+    "rating": 4.2,
+    "reviews_count": 61,
+    "stock": 90,
+    "image": "assets/products/cap.png",
+    "short_description": "Six-panel cotton twill cap with embroidered crest and brass buckle.",
+    "description": "A six-panel cap in washed cotton twill with the Institute crest embroidered front and centre. Pre-curved brim, breathable eyelets, and an adjustable strap with an antique brass buckle.",
+    "specs": {
+      "Material": "Washed cotton twill",
+      "Closure": "Adjustable brass buckle",
+      "Size": "One size fits most",
+      "Detail": "Embroidered crest, 6 panels"
+    },
+    "reviews": [
+      {"user": "Farhan A. (B.Sc '23)", "rating": 4, "comment": "Nice muted maroon shade, not flashy."}
+    ]
+  },
+  {
+    "id": "P009",
+    "name": "Executive Pen Set",
+    "category": "Stationery",
+    "price": 999,
+    "rating": 4.5,
+    "reviews_count": 38,
+    "stock": 47,
+    "image": "assets/products/penset.png",
+    "short_description": "Rollerball and ballpoint duo, crest-engraved, in a gift box.",
+    "description": "A matched rollerball and ballpoint pair in gunmetal with maroon lacquer inlay and a laser-engraved crest on each cap. Ships in a magnetic-close gift box with two spare refills — a favourite for convocation gifting.",
+    "specs": {
+      "Contents": "1 rollerball, 1 ballpoint, 2 refills",
+      "Body": "Gunmetal brass, maroon lacquer",
+      "Packaging": "Magnetic gift box",
+      "Engraving": "Laser-engraved crest"
+    },
+    "reviews": [
+      {"user": "Lakshmi P. (PhD '09)", "rating": 5, "comment": "Gifted to my advisor — the box itself feels premium."}
+    ]
+  },
+  {
+    "id": "P010",
+    "name": "Alumni Lapel Badge",
+    "category": "Memorabilia",
+    "price": 299,
+    "rating": 4.9,
+    "reviews_count": 244,
+    "stock": 300,
+    "image": "assets/products/badge.png",
+    "short_description": "Die-struck brass lapel pin with hard enamel crest, butterfly clasp.",
+    "description": "A 20 mm die-struck brass lapel pin with the Institute crest in hard enamel and a gold-plated rim. Butterfly clasp back, presented on a maroon card — the quiet handshake between alumni everywhere.",
+    "specs": {
+      "Size": "20 mm",
+      "Material": "Die-struck brass, hard enamel",
+      "Plating": "Gold",
+      "Back": "Butterfly clasp"
+    },
+    "reviews": [
+      {"user": "Ravi C. (M.E '01)", "rating": 5, "comment": "Wore it to a conference in Boston — two strangers walked up to say hello."}
+    ]
+  },
+  {
+    "id": "P011",
+    "name": "Insulated Coffee Flask",
+    "category": "Drinkware",
+    "price": 1199,
+    "rating": 4.7,
+    "reviews_count": 115,
+    "stock": 55,
+    "image": "assets/products/flask.png",
+    "short_description": "500 ml double-wall vacuum flask — 12 h hot, 24 h cold.",
+    "description": "A 500 ml double-wall vacuum-insulated flask that keeps filter coffee hot for 12 hours and cold brew cold for 24. Sip-through lid, powder-coated maroon body, and a laser-etched crest.",
+    "specs": {
+      "Capacity": "500 ml",
+      "Insulation": "Double-wall vacuum, 12 h hot / 24 h cold",
+      "Lid": "Sip-through, leak-resistant",
+      "Material": "304 stainless steel"
+    },
+    "reviews": [
+      {"user": "Aditi G. (M.Tech '16)", "rating": 5, "comment": "Coffee is still hot at 4 pm. Magic."}
+    ]
+  },
+  {
+    "id": "P012",
+    "name": "Campus Sticker Pack",
+    "category": "Memorabilia",
+    "price": 199,
+    "rating": 4.4,
+    "reviews_count": 178,
+    "stock": 0,
+    "image": "assets/products/stickers.png",
+    "short_description": "Set of 10 vinyl stickers — crest, Tata Hall, banyan tree, and more.",
+    "description": "Ten die-cut vinyl stickers celebrating campus icons: the crest, Tata Hall, the Main Building arch, the banyan avenue, and a few departmental in-jokes. Waterproof, UV-resistant, laptop-and-bottle safe.",
+    "specs": {
+      "Count": "10 stickers",
+      "Material": "Waterproof vinyl, UV laminate",
+      "Sizes": "5–9 cm each",
+      "Adhesive": "Removable, residue-free"
+    },
+    "reviews": [
+      {"user": "Ishaan D. (B.Sc '24)", "rating": 4, "comment": "The banyan one is my favourite. Restock soon please!"}
+    ]
+  }
+]

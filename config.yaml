@@ -1,0 +1,21 @@
+# ---------------------------------------------------------------
+# IISc Alumni Store — application configuration
+# Values here can be overridden by environment variables / .env
+# (see config.py for the override mapping).
+# ---------------------------------------------------------------
+app:
+  title: "IISc Alumni Store"
+  enable_chatbot: true
+
+api:
+  # Remote API Gateway that the chatbot talks to.
+  # Override with API_BASE_URL in .env for deployments.
+  base_url: "http://localhost:8600"
+  chat_endpoint: "/api/chat"
+  timeout_seconds: 10
+
+colors:
+  primary: "#8B3355"     # IISc maroon
+  secondary: "#FFFFFF"
+  accent: "#C99B2F"      # gold
+  neutral: "#F8F2E7"     # warm light gray
