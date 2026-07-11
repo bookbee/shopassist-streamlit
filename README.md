@@ -139,3 +139,4 @@ iisc_alumni_store/
 - Streaming chat responses and typing indicator over SSE/WebSocket
 - Wishlist persistence, dark mode, and internationalisation
 - Image CDN with real product photography
+- Create an image and push it to the dockerhub
