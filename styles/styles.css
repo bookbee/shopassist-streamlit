@@ -1,0 +1,421 @@
+/* ==========================================================================
+   IISc Alumni Store — light academic theme
+   Palette: soft maroon #8B3355 · muted gold #C99B2F · ivory #FFFDF9
+   Display type: Cormorant Garamond · airy spacing, hairline borders,
+   restrained shadows. Signature: the "crest rule" double gold keyline.
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap');
+
+:root {
+  --maroon: #8B3355;
+  --maroon-deep: #66203E;
+  --gold: #C99B2F;
+  --gold-soft: #F0DFAE;
+  --ivory: #FFFDF9;
+  --paper: #F8F2E7;
+  --ink: #38262E;
+  --line: #EBDFC8;
+  --radius: 14px;
+  --shadow: 0 1px 4px rgba(58, 46, 51, 0.06);
+  --shadow-hover: 0 6px 18px rgba(122, 46, 74, 0.10);
+}
+
+/* ---- global type ---- */
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif !important;
+  color: var(--maroon) !important;
+  letter-spacing: 0.2px;
+  font-weight: 600 !important;
+}
+
+.crest-rule {
+  width: 88px;
+  border-top: 2px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  height: 5px;
+  margin: 0.1rem 0 1.1rem 0;
+}
+
+/* ---- hero: ivory, type-led, airy ---- */
+.hero {
+  background: linear-gradient(160deg, var(--ivory) 0%, var(--paper) 70%, #F2ECDF 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 3.4rem 3rem 3rem 3rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid var(--gold-soft);
+  border-radius: 10px;
+  pointer-events: none;
+}
+.hero::after {
+  content: "est. 1909";
+  position: absolute;
+  right: 2.4rem;
+  bottom: 1.6rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 1rem;
+}
+.hero h1 {
+  color: var(--maroon-deep) !important;
+  font-size: 3rem;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.06;
+}
+.hero p { color: #6d5a61; font-size: 1.12rem; max-width: 34rem; margin: 0; }
+.hero .kicker {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.72rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+/* ---- cards: hairline borders, gentle lift ---- */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line) !important;
+  border-bottom: 2px solid var(--gold-soft) !important;
+  background: #FFFFFF;
+  transition: box-shadow 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+}
+div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+  box-shadow: var(--shadow-hover);
+  border-bottom-color: var(--gold) !important;
+  transform: translateY(-2px);
+}
+
+/* ---- buttons ---- */
+.stButton > button, .stFormSubmitButton > button, .stDownloadButton > button {
+  border-radius: 999px !important;
+  font-weight: 600;
+  transition: all 0.18s ease;
+}
+.stButton > button[kind="primary"], .stFormSubmitButton > button[kind="primary"] {
+  background: var(--maroon) !important;
+  border: 1px solid var(--maroon) !important;
+  color: var(--ivory) !important;
+}
+.stButton > button[kind="primary"]:hover, .stFormSubmitButton > button[kind="primary"]:hover {
+  background: var(--maroon-deep) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 3px 10px rgba(122, 46, 74, 0.22);
+}
+.stButton > button[kind="secondary"] {
+  border: 1px solid var(--line) !important;
+  color: var(--maroon) !important;
+  background: #FFFFFF !important;
+}
+.stButton > button[kind="secondary"]:hover {
+  background: var(--paper) !important;
+  border-color: var(--gold) !important;
+}
+
+/* ---- badges & labels ---- */
+.badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+.badge-stock { background: #EDF5EE; color: #2E6B3E; }
+.badge-low { background: #FAF3DC; color: #8A6D10; }
+.badge-out { background: #F9ECEC; color: #9A3A3A; }
+.badge-cat { background: var(--paper); color: var(--maroon); border: 1px solid var(--line); }
+.badge-status { background: var(--gold-soft); color: var(--maroon-deep); }
+
+.price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--maroon);
+}
+.rating { color: var(--gold); font-size: 0.95rem; letter-spacing: 1px; }
+.muted { color: #8a7a80; font-size: 0.88rem; }
+
+/* ---- header / navbar ---- */
+.utility-strip {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.6px;
+  color: var(--maroon);
+  padding: 5px 14px;
+  margin-bottom: 0.7rem;
+}
+.utility-strip strong { color: var(--gold); }
+.nav-wrap { border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.6rem; }
+.brand-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--maroon);
+  line-height: 1;
+}
+.brand-sub {
+  font-size: 0.66rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ---- footer ---- */
+.footer {
+  margin-top: 3rem;
+  padding: 1.6rem 0 0.6rem 0;
+  border-top: 1px solid var(--line);
+  color: #8a7a80;
+  font-size: 0.85rem;
+  text-align: center;
+}
+.footer .crest-rule { margin: 0 auto 0.9rem auto; }
+
+/* ==========================================================================
+   AI Assistant — the capstone's headline feature
+   Launcher: prominent fixed pill, bottom-right, gentle pulse.
+   Conversation: opens as a CENTERED modal dialog (st.dialog).
+   ========================================================================== */
+.st-key-chat_launcher {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  width: auto !important;
+}
+.st-key-chat_launcher button {
+  background: var(--maroon) !important;
+  color: var(--ivory) !important;
+  border: 2px solid var(--gold) !important;
+  border-radius: 999px !important;
+  font-size: 1.02rem !important;
+  font-weight: 700 !important;
+  padding: 0.85rem 1.6rem !important;
+  box-shadow: 0 10px 28px rgba(94, 33, 56, 0.30);
+  animation: chat-pulse 2.6s ease-in-out infinite;
+}
+.st-key-chat_launcher button:hover {
+  background: var(--maroon-deep) !important;
+  transform: scale(1.05);
+  animation: none;
+}
+@keyframes chat-pulse {
+  0%, 100% { box-shadow: 0 10px 28px rgba(94, 33, 56, 0.30); }
+  50% { box-shadow: 0 10px 28px rgba(94, 33, 56, 0.30), 0 0 0 10px rgba(194, 162, 75, 0.14); }
+}
+
+/* the centered dialog itself */
+div[data-testid="stDialog"] div[role="dialog"] {
+  border-top: 4px solid var(--gold);
+  border-radius: var(--radius);
+}
+
+/* chat bubbles */
+.chat-user, .chat-bot {
+  padding: 0.6rem 0.9rem;
+  border-radius: 12px;
+  margin: 0.3rem 0;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  max-width: 88%;
+}
+.chat-user {
+  background: var(--maroon);
+  color: var(--ivory);
+  margin-left: auto;
+  border-bottom-right-radius: 3px;
+}
+.chat-bot {
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-bottom-left-radius: 3px;
+}
+.chat-agent {
+  font-size: 0.66rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+/* order timeline */
+.tl-step { display: flex; gap: 0.6rem; align-items: baseline; margin: 0.15rem 0; }
+.tl-dot { color: var(--gold); font-weight: 700; }
+.tl-dot.pending { color: #cfc6b8; }
+
+/* responsive */
+@media (max-width: 740px) {
+  .hero { padding: 2rem 1.4rem; }
+  .hero h1 { font-size: 2.1rem; }
+  .st-key-chat_launcher { bottom: 16px; right: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ==========================================================================
+   Refinement pass — richer color, local-demo chrome, carousel, cart feedback
+   ========================================================================== */
+
+/* hide Streamlit's Deploy button & status chrome for the local demo */
+[data-testid="stAppDeployButton"], .stAppDeployButton,
+[data-testid="stStatusWidget"], [data-testid="stDecoration"] {
+  display: none !important;
+}
+
+/* utility strip: maroon ribbon for a confident top note */
+.utility-strip {
+  background: linear-gradient(90deg, var(--maroon-deep), var(--maroon)) !important;
+  border: none !important;
+  color: var(--ivory) !important;
+}
+.utility-strip strong { color: var(--gold-soft) !important; }
+
+/* primary buttons: subtle maroon gradient for depth */
+.stButton > button[kind="primary"], .stFormSubmitButton > button[kind="primary"] {
+  background: linear-gradient(135deg, #9A3A5F, var(--maroon-deep)) !important;
+}
+
+/* hero: warmer wash + gold-tinted kicker chip */
+.hero {
+  background: linear-gradient(150deg, #FFFDF8 0%, #FBF2E2 55%, #F6E7CD 100%) !important;
+}
+.hero .kicker {
+  display: inline-block;
+  background: var(--maroon);
+  color: var(--gold-soft);
+  padding: 4px 14px;
+  border-radius: 999px;
+}
+.hero em { color: var(--gold); font-style: italic; }
+
+/* category tiles: each family gets its own tint */
+.st-key-cat_Apparel button      { background: #FBEDF1 !important; border-color: #E9C6D2 !important; color: var(--maroon) !important; }
+.st-key-cat_Drinkware button    { background: #EDF1F8 !important; border-color: #C7D4E8 !important; color: #3E5578 !important; }
+.st-key-cat_Stationery button   { background: #EFF4E9 !important; border-color: #CCDCC0 !important; color: #4A6437 !important; }
+.st-key-cat_Accessories button  { background: #FBF3DE !important; border-color: #E8D8A8 !important; color: #7d5F14 !important; }
+.st-key-cat_Memorabilia button  { background: #F9EEE6 !important; border-color: #E4CDB8 !important; color: #8A5432 !important; }
+.st-key-cat_Apparel button:hover, .st-key-cat_Drinkware button:hover,
+.st-key-cat_Stationery button:hover, .st-key-cat_Accessories button:hover,
+.st-key-cat_Memorabilia button:hover {
+  border-color: var(--gold) !important;
+  transform: translateY(-2px);
+}
+
+/* carousel controls */
+.carousel-dots {
+  text-align: center;
+  font-size: 1.05rem;
+  letter-spacing: 8px;
+  color: var(--gold);
+  margin-top: 0.15rem;
+}
+.carousel-caption {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #8a7280;
+  margin-top: -0.2rem;
+}
+
+/* add-to-cart confirmation flash inside cards */
+.cart-flash {
+  background: #EDF5EE;
+  border: 1px solid #BFDCC5;
+  color: #2E6B3E;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 0.35rem;
+  animation: flash-in 0.25s ease-out;
+}
+@keyframes flash-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Full-bleed pass — tight top spacing, split hero, auto carousel
+   ========================================================================== */
+
+/* reclaim the top of the page for the demo */
+header[data-testid="stHeader"] { display: none !important; }
+.block-container {
+  padding-top: 1.1rem !important;
+  padding-bottom: 2rem !important;
+}
+
+/* hero split: text left, campus picture right */
+.hero-split {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  padding: 2.4rem 2.6rem !important;
+}
+.hero-split .hero-text { flex: 1.35; }
+.hero-split .hero-media {
+  flex: 1;
+  min-width: 240px;
+}
+.hero-split .hero-media img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--gold-soft);
+  box-shadow: 0 8px 22px rgba(102, 32, 62, 0.14);
+}
+@media (max-width: 860px) {
+  .hero-split { flex-direction: column; }
+  .hero-split .hero-media { width: 100%; }
+}
+
+/* auto-rotating banner carousel (pure CSS crossfade, no controls) */
+.carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1600 / 440;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  margin: 1rem 0 0.4rem 0;
+}
+.carousel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: carousel-fade var(--cycle, 20s) infinite;
+}
+.carousel img:first-child { opacity: 1; }  /* base layer: no blank frames */
+@keyframes carousel-fade {
+  0%   { opacity: 0; }
+  4%   { opacity: 1; }
+  25%  { opacity: 1; }
+  29%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .carousel img { animation: none; }
+  .carousel img:not(:first-child) { display: none; }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Vikas Sharma",
+  "avatar": "assets/logo.png",
+  "department": "Department of Computational and Data Sciences",
+  "graduation_year": 2018,
+  "degree": "M.Tech",
+  "membership": "Lifetime Alumni Member",
+  "member_since": 2018,
+  "email": "vikas.sharma@alum.iisc.ac.in",
+  "phone": "+91 98XXX XX210",
+  "reward_points": 1240,
+  "addresses": [
+    {
+      "label": "Home",
+      "line1": "B-1203, Lakeview Residency",
+      "line2": "Powai",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400076",
+      "default": true
+    },
+    {
+      "label": "Office",
+      "line1": "4th Floor, Orion Tech Park",
+      "line2": "Goregaon East",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400063",
+      "default": false
+    }
+  ]
+}
