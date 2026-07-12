@@ -10,10 +10,17 @@ class ChatRequest:
     """Payload sent to the API Gateway."""
 
     session_id: str
-    message: str
+    user_id: str
+    text: str
+    device_type: str
 
     def to_json(self) -> dict[str, str]:
-        return {"session_id": self.session_id, "message": self.message}
+        return {
+            "session_id": self.session_id,
+            "user_id": self.user_id,
+            "text": self.text,
+            "device_type": self.device_type,
+        }
 
 
 @dataclass

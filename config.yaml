@@ -6,12 +6,15 @@
 app:
   title: "IISc Alumni Store"
   enable_chatbot: true
+  # DEBUG shows the raw chat request payload sent to the API Gateway
+  # (see chatbot/api_client.py's log.debug call). Override with LOG_LEVEL in .env.
+  log_level: "INFO"
 
 api:
   # Remote API Gateway that the chatbot talks to.
   # Override with API_BASE_URL in .env for deployments.
-  base_url: "http://localhost:8600"
-  chat_endpoint: "/api/chat"
+  base_url: "http://localhost:8000"
+  chat_endpoint: "/api/v1/chat"
   timeout_seconds: 10
 
 colors:

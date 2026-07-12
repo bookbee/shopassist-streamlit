@@ -2,9 +2,11 @@
 
 A prominent launcher pill sits fixed at the bottom-right of every page
 (styled via the .st-key-chat_launcher CSS hook). Clicking it opens the
-conversation as a CENTERED modal dialog (st.dialog), front and centre.
+conversation inline as an anchored floating panel (st.popover) — the
+page underneath stays visible and interactive, so it reads as part of
+the storefront chrome rather than an interruption.
 
-Message sends run in widget callbacks so the dialog stays open across
+Message sends run in widget callbacks so the panel stays open across
 turns; every message goes to the remote API Gateway via chatbot.api_client.
 An {"intent": "escalate"} response triggers the support-ticket flow.
 """
@@ -20,7 +22,7 @@ from chatbot.api_client import UNAVAILABLE_MESSAGE, send_message
 from chatbot.models import ChatResponse
 from config import settings
 from utils.constants import CHAT_QUICK_ACTIONS, TICKET_RESPONSE_TIME
-from utils.helpers import get_logger
+from utils.helpers import get_device_type, get_logger
 
 log = get_logger("alumni_store.chat_ui")
 
@@ -48,7 +50,12 @@ def _send(message: str) -> None:
         return
     _push("user", message)
 
-    response = send_message(st.session_state.chat_session_id, message)
+    response = send_message(
+        st.session_state.chat_session_id,
+        st.session_state.user_id,
+        message,
+        get_device_type(),
+    )
 
     if not response.ok:
         _push("bot", UNAVAILABLE_MESSAGE, {"error": True})
@@ -80,7 +87,7 @@ def _on_clear() -> None:
 
 
 # --------------------------------------------------------------------------- #
-# Dialog
+# Panel
 # --------------------------------------------------------------------------- #
 def _render_history() -> None:
     if not st.session_state.chat_history:
@@ -107,8 +114,11 @@ def _render_history() -> None:
                 )
 
 
-@st.dialog("Alumni Store Assistant", width="large")
-def _chat_dialog() -> None:
+def _chat_panel() -> None:
+    # Streamlit portals the popover body outside .st-key-chat_launcher, so this
+    # marker lets styles.css scope itself via :has() instead of descendant nesting.
+    st.markdown("<div class='chat-panel-marker'></div>", unsafe_allow_html=True)
+    st.markdown("**Alumni Store Assistant**")
     st.caption(
         "Connected to the Alumni Store API Gateway · "
         "I can track orders, answer product questions, and raise support tickets."
@@ -130,23 +140,22 @@ def _chat_dialog() -> None:
             )
 
     with st.form("chat_form", clear_on_submit=True, border=False):
-        input_col, send_col = st.columns([5, 1])
-        input_col.text_input(
+        st.text_input(
             "Message",
             key="chat_text",
             placeholder="e.g. Where is order IISC202600145?",
             label_visibility="collapsed",
         )
-        send_col.form_submit_button("Send", type="primary", on_click=_on_form_send,
-                                    width="stretch")
+        st.form_submit_button("Send", type="primary", on_click=_on_form_send,
+                              width="stretch")
 
     if st.session_state.chat_history:
         st.button("Clear conversation", key="chat_clear", on_click=_on_clear)
 
 
 def render_chatbot() -> None:
-    """Render the launcher pill; opens the centered dialog. Call once per run."""
+    """Render the fixed launcher; opens an anchored panel in place. Call once per run."""
     if not settings.enable_chatbot:
         return
-    if st.button("💬 Ask the Assistant", key="chat_launcher", type="primary"):
-        _chat_dialog()
+    with st.popover("💬 Ask the Assistant", key="chat_launcher"):
+        _chat_panel()

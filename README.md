@@ -34,7 +34,7 @@ Gateway** over HTTP.
 │        data/*.json  ← ALL store data is mocked here               │
 │                                                                   │
 │  chatbot/chat_ui.py ── chatbot/api_client.py ──► HTTP POST ───────┼──►  API Gateway
-│                        (the ONLY network call)   /api/chat        │     (remote / real)
+│                        (the ONLY network call)   /api/v1/chat        │     (remote / real)
 └───────────────────────────────────────────────────────────────────┘
 ```
 
@@ -76,7 +76,7 @@ Optionally, for a full end-to-end chatbot demo without the real gateway, run
 the included stdlib mock in a **second terminal**:
 
 ```bash
-python mock_gateway.py     # serves http://localhost:8600/api/chat
+python mock_gateway.py     # serves http://localhost:8600/api/v1/chat
 ```
 
 Then open the app, click **💬 Ask the Assistant**, and try:
@@ -94,7 +94,7 @@ All configurable values live outside the code:
 | Key | Where | Default | Purpose |
 | --- | --- | --- | --- |
 | `API_BASE_URL` | `.env` / `config.yaml` | `http://localhost:8600` | Gateway base URL |
-| `CHAT_ENDPOINT` | `.env` / `config.yaml` | `/api/chat` | Chat path |
+| `CHAT_ENDPOINT` | `.env` / `config.yaml` | `/api/v1/chat` | Chat path |
 | `TIMEOUT` | `.env` / `config.yaml` | `10` | Request timeout (s) |
 | `APP_TITLE` | `.env` / `config.yaml` | `IISc Alumni Store` | Browser title |
 | `ENABLE_CHATBOT` | `.env` / `config.yaml` | `true` | Feature flag |

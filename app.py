@@ -18,7 +18,7 @@ from chatbot.chat_ui import render_chatbot
 from components.footer import render_footer
 from components.navbar import render_navbar
 from config import settings
-from pages import about, cart, catalog, checkout, home, orders, product, profile
+from pages import about, cart, catalog, checkout, home, login, orders, product, profile
 from utils.helpers import get_logger, init_state
 
 log = get_logger()
@@ -53,6 +53,10 @@ def main() -> None:
     )
     init_state()
     load_css()
+
+    if not st.session_state.authenticated:
+        login.render()
+        return
 
     render_navbar()
 

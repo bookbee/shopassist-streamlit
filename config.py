@@ -45,9 +45,10 @@ class Settings:
 
     app_title: str = os.getenv("APP_TITLE", _app.get("title", "IISc Alumni Store"))
     enable_chatbot: bool = _env_bool("ENABLE_CHATBOT", bool(_app.get("enable_chatbot", True)))
+    log_level: str = os.getenv("LOG_LEVEL", _app.get("log_level", "INFO")).upper()
 
     api_base_url: str = os.getenv("API_BASE_URL", _api.get("base_url", "http://localhost:8600"))
-    chat_endpoint: str = os.getenv("CHAT_ENDPOINT", _api.get("chat_endpoint", "/api/chat"))
+    chat_endpoint: str = os.getenv("CHAT_ENDPOINT", _api.get("chat_endpoint", "/api/v1/chat"))
     timeout_seconds: float = float(os.getenv("TIMEOUT", _api.get("timeout_seconds", 10)))
 
     colors: dict = field(

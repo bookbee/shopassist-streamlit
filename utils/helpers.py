@@ -13,6 +13,7 @@ from uuid import uuid4
 
 import streamlit as st
 
+from config import settings
 from utils.constants import (
     CURRENCY,
     DELIVERY_DAYS_ESTIMATE,
@@ -34,7 +35,7 @@ def get_logger(name: str = "alumni_store") -> logging.Logger:
     logger = logging.getLogger(name)
     if logger.handlers:
         return logger
-    logger.setLevel(logging.INFO)
+    logger.setLevel(getattr(logging, settings.log_level, logging.INFO))
     LOG_DIR.mkdir(exist_ok=True)
     handler = RotatingFileHandler(
         LOG_DIR / "app.log", maxBytes=512_000, backupCount=3, encoding="utf-8"
@@ -103,7 +104,8 @@ def init_state() -> None:
     defaults: dict[str, Any] = {
         "page": "home",                  # current router target
         "cart": {},                      # {product_id: qty}
-        "logged_in": True,               # mock login status
+        "authenticated": False,          # gates the app behind pages/login.py
+        "user_id": None,                 # identity captured at login; sent with chat requests
         "profile": get_profile(),
         "chat_history": [],              # [{role, content, meta}]
         "chat_session_id": str(uuid4()),
@@ -121,6 +123,19 @@ def go_to(page: str) -> None:
     """Route to a page on the next rerun."""
     st.session_state.page = page
     log.info("Navigate -> %s", page)
+
+
+def get_device_type() -> str:
+    """Classify the caller's device from the User-Agent header, for chat attribution."""
+    try:
+        user_agent = (st.context.headers.get("User-Agent") or "").lower()
+    except Exception:  # noqa: BLE001 — headers can be unavailable outside a live session
+        user_agent = ""
+    if "ipad" in user_agent or "tablet" in user_agent:
+        return "tablet"
+    if any(token in user_agent for token in ("mobi", "iphone", "android")):
+        return "mobile"
+    return "desktop"
 
 
 def view_product(product_id: str) -> None:

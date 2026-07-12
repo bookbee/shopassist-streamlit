@@ -189,7 +189,8 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
 /* ==========================================================================
    AI Assistant — the capstone's headline feature
    Launcher: prominent fixed pill, bottom-right, gentle pulse.
-   Conversation: opens as a CENTERED modal dialog (st.dialog).
+   Conversation: opens inline as an anchored floating panel (st.popover) —
+   non-blocking, the page underneath stays visible and interactive.
    ========================================================================== */
 .st-key-chat_launcher {
   position: fixed;
@@ -219,10 +220,23 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
   50% { box-shadow: 0 10px 28px rgba(94, 33, 56, 0.30), 0 0 0 10px rgba(194, 162, 75, 0.14); }
 }
 
-/* the centered dialog itself */
-div[data-testid="stDialog"] div[role="dialog"] {
+/* the floating assistant panel itself — Streamlit portals the popover body
+   outside .st-key-chat_launcher, so it's scoped via the .chat-panel-marker
+   child (see chatbot/chat_ui.py) instead of descendant nesting. */
+div[data-testid="stPopoverBody"]:has(.chat-panel-marker) {
   border-top: 4px solid var(--gold);
   border-radius: var(--radius);
+  width: 380px !important;
+  max-width: min(90vw, 380px);
+  max-height: min(70vh, 620px);
+  overflow-y: auto;
+  box-shadow: 0 14px 34px rgba(58, 46, 51, 0.22);
+}
+.chat-panel-marker { display: none; }
+@media (max-width: 740px) {
+  div[data-testid="stPopoverBody"]:has(.chat-panel-marker) {
+    width: min(92vw, 380px) !important;
+  }
 }
 
 /* chat bubbles */

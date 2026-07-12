@@ -3,8 +3,8 @@
 This is the only component in the application that talks to a real network
 service. Everything else in the store is mocked. The gateway contract:
 
-    POST {API_BASE_URL}/api/chat
-    -> {"session_id": "abc123", "message": "Where is my order?"}
+    POST {API_BASE_URL}/api/v1/chat
+    -> {"session_id": "abc123", "user_id": "alumni2018", "text": "Where is my order?", "device_type": "desktop"}
     <- {"reply": "...", "intent": "track_order", ...}
 
 If the response contains {"intent": "escalate"} the UI opens the support
@@ -25,15 +25,15 @@ log = get_logger("alumni_store.chat")
 UNAVAILABLE_MESSAGE = "AI Assistant is currently unavailable."
 
 
-def send_message(session_id: str, message: str) -> ChatResponse:
+def send_message(session_id: str, user_id: str, message: str, device_type: str) -> ChatResponse:
     """POST the user's message to the gateway and normalise the reply.
 
     Never raises — every failure mode collapses to ChatResponse(ok=False)
     so the UI can degrade gracefully instead of crashing.
     """
-    request = ChatRequest(session_id=session_id, message=message)
+    request = ChatRequest(session_id=session_id, user_id=user_id, text=message, device_type=device_type)
     url = settings.chat_url
-
+    log.debug("Sending message to %s: %s", url, request.to_json())
     try:
         response = requests.post(
             url,
