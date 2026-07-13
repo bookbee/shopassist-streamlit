@@ -6,9 +6,12 @@ conversation inline as an anchored floating panel (st.popover) — the
 page underneath stays visible and interactive, so it reads as part of
 the storefront chrome rather than an interruption.
 
-Message sends run in widget callbacks so the panel stays open across
-turns; every message goes to the remote API Gateway via chatbot.api_client.
-An {"intent": "escalate"} response triggers the support-ticket flow.
+Sending a message is two-phase: the widget callback (_enqueue) just stores
+it and marks it pending, so the panel stays open and a typing indicator can
+render; the actual (blocking) call to the remote API Gateway happens right
+after in the normal script body (_resolve_pending), via chatbot.api_client.
+An agent_invoked == "EscalationAgent" response triggers the support-ticket
+flow.
 """
 from __future__ import annotations
 
@@ -22,7 +25,7 @@ from chatbot.api_client import UNAVAILABLE_MESSAGE, send_message
 from chatbot.models import ChatResponse
 from config import settings
 from utils.constants import CHAT_QUICK_ACTIONS, TICKET_RESPONSE_TIME
-from utils.helpers import get_device_type, get_logger
+from utils.helpers import get_logger
 
 log = get_logger("alumni_store.chat_ui")
 
@@ -43,18 +46,37 @@ def _push(role: str, content: str, meta: dict | None = None) -> None:
     )
 
 
-def _send(message: str) -> None:
-    """Send a message through the gateway; runs inside a widget callback."""
+def _enqueue(message: str) -> None:
+    """Widget callback: record the user's turn and mark it pending.
+
+    The actual network call happens in _resolve_pending() from the normal
+    script body, not here. Streamlit executes on_click/on_submit callbacks
+    in a separate pass before the script reruns and starts painting, so
+    anything the callback itself renders never reaches the browser until
+    after it returns — there'd be nothing to show a typing indicator with
+    if the (blocking) send_message() call also lived here.
+    """
     message = message.strip()
     if not message:
         return
     _push("user", message)
+    st.session_state.chat_pending = message
+
+
+def _resolve_pending() -> None:
+    """Send the pending message and push the reply — runs in the main
+    script body, immediately after the typing indicator has been drawn
+    (see _chat_panel), so that indicator actually reaches the browser
+    before this blocks on the network request.
+    """
+    message = st.session_state.pop("chat_pending", None)
+    if not message:
+        return
 
     response = send_message(
         st.session_state.chat_session_id,
         st.session_state.user_id,
         message,
-        get_device_type(),
     )
 
     if not response.ok:
@@ -68,22 +90,23 @@ def _send(message: str) -> None:
         _push("bot", reply, {"escalated": True, "ticket": ticket})
         return
 
-    _push("bot", response.reply or "…", {"intent": response.intent})
+    _push("bot", response.reply or "…", {"agent_invoked": response.agent_invoked})
 
 
 # --------------------------------------------------------------------------- #
 # Widget callbacks (run before the rerun, so the dialog stays open)
 # --------------------------------------------------------------------------- #
 def _on_form_send() -> None:
-    _send(st.session_state.get("chat_text", ""))
+    _enqueue(st.session_state.get("chat_text", ""))
 
 
 def _on_quick_action(prompt: str) -> None:
-    _send(prompt)
+    _enqueue(prompt)
 
 
 def _on_clear() -> None:
     st.session_state.chat_history = []
+    st.session_state.chat_pending = None
 
 
 # --------------------------------------------------------------------------- #
@@ -126,6 +149,15 @@ def _chat_panel() -> None:
 
     with st.container(height=340, border=False):
         _render_history()
+        if st.session_state.get("chat_pending"):
+            st.markdown(
+                "<div class='chat-bot chat-typing'><span></span><span></span><span></span></div>",
+                unsafe_allow_html=True,
+            )
+
+    if st.session_state.get("chat_pending"):
+        _resolve_pending()
+        st.rerun()
 
     if not st.session_state.chat_history:
         st.markdown("<div class='chat-agent'>Try asking</div>", unsafe_allow_html=True)

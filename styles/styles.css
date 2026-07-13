@@ -269,6 +269,27 @@ div[data-testid="stPopoverBody"]:has(.chat-panel-marker) {
   margin-top: 0.5rem;
 }
 
+/* "assistant is typing" indicator, shown while a reply is in flight */
+.chat-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.chat-typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.35;
+  animation: chat-typing-bounce 1.1s ease-in-out infinite;
+}
+.chat-typing span:nth-child(2) { animation-delay: 0.15s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes chat-typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
+  30% { transform: translateY(-4px); opacity: 0.9; }
+}
+
 /* order timeline */
 .tl-step { display: flex; gap: 0.6rem; align-items: baseline; margin: 0.15rem 0; }
 .tl-dot { color: var(--gold); font-weight: 700; }
