@@ -24,8 +24,14 @@ def render() -> None:
             )
             st.metric("Reward Points", profile.get("reward_points", 0))
             st.caption("100 points = ₹50 off a future order")
+            st.caption(f"Signed in as `{st.session_state.user_id}`")
             if st.button("Edit Profile", width="stretch"):
                 st.toast("Profile editing is mocked in this demo.", icon="✏️")
+            if st.button("Log out", width="stretch"):
+                st.session_state.authenticated = False
+                st.session_state.user_id = None
+                st.session_state.page = "home"
+                st.rerun()
 
     with detail_col:
         with st.container(border=True):

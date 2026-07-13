@@ -1,10 +1,10 @@
 """Optional local mock of the remote API Gateway (stdlib only, no deps).
 
-The Streamlit app's chatbot POSTs to {API_BASE_URL}/api/chat. In production
+The Streamlit app's chatbot POSTs to {API_BASE_URL}/api/v1/chat. In production
 that URL points at a real gateway; for local end-to-end demos, run this file
 in a second terminal:
 
-    python mock_gateway.py            # serves http://localhost:8600
+    python mock_gateway.py            # serves http://localhost:8000
 
 It answers the capstone's demo scenarios with simple keyword routing and
 returns {"intent": "escalate", "ticket": {...}} for support hand-offs, which
@@ -17,7 +17,7 @@ import json
 import re
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-HOST, PORT = "localhost", 8600
+HOST, PORT = "localhost", 8000
 
 PRODUCT_FACTS = {
     "hoodie": "The Alumni Hoodie is 80% cotton / 20% polyester fleece at 320 GSM, "
@@ -115,17 +115,21 @@ def route(message: str) -> dict:
 
 class Handler(BaseHTTPRequestHandler):
     def do_POST(self):  # noqa: N802 — http.server API
-        if self.path != "/api/chat":
+        if self.path != "/api/v1/chat":
             self.send_error(404, "Unknown endpoint")
             return
         try:
             length = int(self.headers.get("Content-Length", 0))
             payload = json.loads(self.rfile.read(length) or b"{}")
-            message = str(payload.get("message", ""))
+            message = str(payload.get("text", ""))
         except (ValueError, json.JSONDecodeError):
             self.send_error(400, "Invalid JSON")
             return
 
+        print(
+            f"[mock-gateway] session={payload.get('session_id')} "
+            f"user={payload.get('user_id')} device={payload.get('device_type')}"
+        )
         body = json.dumps(route(message)).encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type", "application/json")
@@ -138,5 +142,5 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    print(f"Mock API Gateway listening on http://{HOST}:{PORT}/api/chat")
+    print(f"Mock API Gateway listening on http://{HOST}:{PORT}/api/v1/chat")
     HTTPServer((HOST, PORT), Handler).serve_forever()
