@@ -1,6 +1,6 @@
 """Local stand-in for the real shopassist API Gateway (stdlib only, no deps).
 
-The Streamlit app's chatbot POSTs to {API_BASE_URL}/api/v1/chat. This file
+The client app's chatbot POSTs to {API_BASE_URL}/api/v1/chat. This file
 answers that request/response contract exactly as the real shopassist
 FastAPI backend does (shopassist/api/schemas.py: ChatRequest / ChatResponse,
 shopassist/api/routers/chat.py):
@@ -13,7 +13,7 @@ shopassist/api/routers/chat.py):
 registers: OrderTrackingAgent, ProductRecommendationAgent, ReturnsAgent,
 GeneralPurposeAgent, EscalationAgent — see shopassist/services/orchestrator.py.
 There is no "ticket" field in the real response; on escalation the
-Streamlit client synthesises a ticket number itself (chatbot/chat_ui.py::
+client synthesises a ticket number itself (chatbot/chat_ui.py::
 _new_ticket), so this mock deliberately doesn't send one either — that
 path needs to work identically against both.
 
@@ -23,7 +23,7 @@ Run this in a second terminal for local end-to-end demos:
 
 To switch to the real gateway: stop this process and, from the shopassist
 repo, run `uvicorn api.main:app --host 0.0.0.0 --port 8000` instead — same
-port, same path, same request/response shape. The Streamlit app needs no
+port, same path, same request/response shape. The client app needs no
 code changes either way; only API_BASE_URL in .env decides which one it's
 talking to (and both being on :8000, not even that needs to change).
 """
@@ -52,7 +52,7 @@ def _customer_name() -> str:
 
     A real backend would key this off `user_id` against a customers table
     (see shopassist-database) and return a real name. This demo only has
-    one profile, so it just reads the same data/profile.json the Streamlit
+    one profile, so it just reads the same data/profile.json the client
     app itself renders on the profile page.
 
     Deliberately NOT derived from session_id — that field only correlates

@@ -138,16 +138,17 @@ def _render_history() -> None:
 
 
 def _chat_panel() -> None:
-    # Streamlit portals the popover body outside .st-key-chat_launcher, so this
+    # Client portals the popover body outside .st-key-chat_launcher, so this
     # marker lets styles.css scope itself via :has() instead of descendant nesting.
     st.markdown("<div class='chat-panel-marker'></div>", unsafe_allow_html=True)
-    st.markdown("**Alumni Store Assistant**")
-    st.caption(
-        "Connected to the Alumni Store API Gateway · "
-        "I can track orders, answer product questions, and raise support tickets."
+    st.markdown(
+        "<div class='chat-header'><span class='chat-logo'></span>"
+        "<span class='chat-header-title'>Alumni Store Assistant</span></div>",
+        unsafe_allow_html=True,
     )
+    st.caption("Order tracking, product Q&A, and support — one chat.")
 
-    with st.container(height=340, border=False):
+    with st.container(height=260, border=False, key="chat_history"):
         _render_history()
         if st.session_state.get("chat_pending"):
             st.markdown(
@@ -172,14 +173,15 @@ def _chat_panel() -> None:
             )
 
     with st.form("chat_form", clear_on_submit=True, border=False):
-        st.text_input(
+        text_col, send_col = st.columns([4, 1])
+        text_col.text_input(
             "Message",
             key="chat_text",
             placeholder="e.g. Where is order IISC202600145?",
             label_visibility="collapsed",
         )
-        st.form_submit_button("Send", type="primary", on_click=_on_form_send,
-                              width="stretch")
+        send_col.form_submit_button("Send", type="primary", on_click=_on_form_send,
+                                    width="stretch")
 
     if st.session_state.chat_history:
         st.button("Clear conversation", key="chat_clear", on_click=_on_clear)
