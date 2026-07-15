@@ -4,13 +4,15 @@ Streamlit web client for ShopAssist — the "IISc Alumni Store" merchandise
 portal (catalog, cart, checkout, orders, profile) plus a floating AI
 assistant that talks to the `shopassist` backend over one HTTP endpoint.
 
-- **UI developers** own this whole repo — see "For UI developers" below.
-- **Backend/API developers** only need "Chat API contract" below to keep
-  `shopassist`'s `/api/v1/chat` endpoint compatible with this client.
+- **Streamlit/web developers** own this whole repo — see "For UI
+  developers" below to run it and find your way around.
+- **Anyone integrating with the API** only needs "Chat API contract"
+  below to keep `shopassist`'s `/api/v1/chat` endpoint compatible with
+  this client.
 
 ## For UI developers
 
-### Setup
+### Setup & run
 
 Requires Python 3.12 (3.10+ should work).
 
@@ -20,11 +22,6 @@ cd shopassist-client
 python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-### Running
-
-```bash
 streamlit run app.py
 ```
 
@@ -37,7 +34,7 @@ python mock_gateway.py     # serves http://localhost:8000/api/v1/chat
 ```
 
 Then try: "Where is order IISC202600145?", "What size should I buy?", "I
-want to talk to customer support" (triggers the ticket flow). The first
+want to talk to customer support" (triggers the ticket flow). First
 message of a session gets a "Hi \<name\>!" greeting from
 `data/profile.json`.
 
@@ -51,10 +48,16 @@ needed here.
 docker compose up -d --build
 ```
 
-Builds and runs this container standalone, talking to the API on the host
-via `host.docker.internal`. To run the whole platform together (Postgres,
-Ollama, the API, and this storefront) with one command, use
-[shopassist-devops](../shopassist-devops) instead.
+Builds and runs this container standalone (image/container
+`shopassist-client`), talking to the API on the host via
+`host.docker.internal`. Override the published port with `WEB_PORT`
+(defaults to 8501).
+
+To run the whole platform together (Postgres, Ollama, the API, and this
+storefront) with one command instead, use
+[shopassist-devops](../shopassist-devops) — its `docker compose up`
+`include:`s this file unmodified and wires everything onto one shared
+container network.
 
 ### Configuration
 
@@ -69,8 +72,8 @@ ENABLE_CHATBOT=true
 LOG_LEVEL=INFO
 ```
 
-`config.yaml` also holds the storefront palette and the chat endpoint path
-— rarely need to change, which is why they're not in `.env`.
+`config.yaml` also holds the storefront palette and chat endpoint path —
+stable enough that they're not worth exposing as env vars.
 
 ### Project structure
 
