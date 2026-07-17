@@ -50,6 +50,7 @@ class Settings:
     api_base_url: str = os.getenv("API_BASE_URL", _api.get("base_url", "http://localhost:8000"))
     chat_endpoint: str = os.getenv("CHAT_ENDPOINT", _api.get("chat_endpoint", "/api/v1/chat"))
     timeout_seconds: float = float(os.getenv("TIMEOUT", _api.get("timeout_seconds", 10)))
+    api_key: str = os.getenv("API_KEY", _api.get("api_key", ""))
 
     colors: dict = field(
         default_factory=lambda: {

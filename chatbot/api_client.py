@@ -6,6 +6,7 @@ is copied field-for-field from the real shopassist backend's Pydantic
 schemas (api/schemas.py: ChatRequest / ChatResponse):
 
     POST {API_BASE_URL}/api/v1/chat
+    Header: X-API-Key: {settings.api_key}  (see shopassist's api/security.py)
     -> {"session_id": "abc123", "user_id": "alumni2018", "text": "Where is my order?", "source_channel": "web_chat"}
     <- {"session_id": "abc123", "response_text": "...", "agent_invoked": "OrderTrackingAgent",
         "confidence_score": 0.9, "timestamp": "2026-07-13T10:15:00Z"}
@@ -42,11 +43,14 @@ def send_message(session_id: str, user_id: str, message: str, source_channel: st
     request_json = request.to_json()
     log.debug("Chat request -> %s: %s", url, request_json)
     try:
+        headers = {"Content-Type": "application/json"}
+        if settings.api_key:
+            headers["X-API-Key"] = settings.api_key
         response = requests.post(
             url,
             json=request_json,
             timeout=settings.timeout_seconds,
-            headers={"Content-Type": "application/json"},
+            headers=headers,
         )
         log.debug("Chat response <- %s %s: %s", response.status_code, url, response.text)
         response.raise_for_status()
