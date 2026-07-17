@@ -330,6 +330,21 @@ div[data-testid="stPopoverBody"]:has(.chat-panel-marker) {
   30% { transform: translateY(-4px); opacity: 0.9; }
 }
 
+/* blinking dot trailing the in-progress word during the typewriter reveal
+   (see chatbot/chat_ui.py::_stream_bot_reply) */
+.chat-cursor {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+  animation: chat-cursor-blink 0.9s steps(1) infinite;
+}
+@keyframes chat-cursor-blink {
+  0%, 49% { opacity: 0.9; }
+  50%, 100% { opacity: 0; }
+}
+
 /* order timeline */
 .tl-step { display: flex; gap: 0.6rem; align-items: baseline; margin: 0.15rem 0; }
 .tl-dot { color: var(--gold); font-weight: 700; }

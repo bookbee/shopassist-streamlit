@@ -33,7 +33,7 @@ included stdlib mock in a second terminal:
 python mock_gateway.py     # serves http://localhost:8000/api/v1/chat
 ```
 
-Then try: "Where is order IISC202600145?", "What size should I buy?", "I
+Then try: "Where is order ord-1001?", "What size should I buy?", "I
 want to talk to customer support" (triggers the ticket flow). First
 message of a session gets a "Hi \<name\>!" greeting from
 `data/profile.json`.
@@ -132,7 +132,7 @@ interchangeable without touching this repo's code.
 Request:
 
 ```json
-{ "session_id": "abc123", "user_id": "alumni2018", "text": "Where is my order?", "source_channel": "web_chat" }
+{ "session_id": "abc123", "user_id": "alum-1001", "text": "Where is my order?", "source_channel": "web_chat" }
 ```
 
 Response:

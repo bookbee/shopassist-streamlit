@@ -7,7 +7,7 @@ schemas (api/schemas.py: ChatRequest / ChatResponse):
 
     POST {API_BASE_URL}/api/v1/chat
     Header: X-API-Key: {settings.api_key}  (see shopassist's api/security.py)
-    -> {"session_id": "abc123", "user_id": "alumni2018", "text": "Where is my order?", "source_channel": "web_chat"}
+    -> {"session_id": "abc123", "user_id": "alum-1001", "text": "Where is my order?", "source_channel": "web_chat"}
     <- {"session_id": "abc123", "response_text": "...", "agent_invoked": "OrderTrackingAgent",
         "confidence_score": 0.9, "timestamp": "2026-07-13T10:15:00Z"}
 

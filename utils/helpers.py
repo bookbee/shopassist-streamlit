@@ -228,7 +228,7 @@ def stars(rating: float) -> str:
 
 
 def generate_order_id() -> str:
-    return "IISC2026" + "".join(random.choices(string.digits, k=5))
+    return "ord-" + "".join(random.choices(string.digits, k=4))
 
 
 def estimated_delivery() -> str:
